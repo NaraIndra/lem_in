@@ -1,0 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_avl_del.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mstygg <mstygg@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/09 14:42:11 by mstygg            #+#    #+#             */
+/*   Updated: 2019/10/26 16:39:39 by mstygg           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "includes/libft.h"
+
+void					ft_avl_del(t_avl_t **root_or)
+{
+	t_avl_t		*root;
+
+	root = *root_or;
+	if (root)
+	{
+		if (root->left)
+			ft_avl_del(&(root->left));
+		if (root->right)
+			ft_avl_del(&(root->right));
+		if (root->content)
+			free(root->content);
+		root->content = NULL;
+		free(root);
+		root = NULL;
+	}
+}
